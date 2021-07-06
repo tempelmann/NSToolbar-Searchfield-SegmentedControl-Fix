@@ -1,0 +1,1 @@
+# NSToolbar-Searchfield-SegmentedControl-Fix
