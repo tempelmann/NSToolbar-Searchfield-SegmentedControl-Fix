@@ -4,7 +4,8 @@
 //
 //	See https://stackoverflow.com/a/68273182/43615
 //
-//  Created by Thomas Tempelmann on 10.06.21.
+//  Created by Thomas Tempelmann on 10 June 21.
+//  Update by TT on 24 July 21: Fix for SegmentedControls is only needed on 10.13 and earlier systems
 //
 
 #import "ViewController.h"
@@ -20,19 +21,23 @@
 - (void)viewWillAppear {
 	[super viewWillAppear];
 	
-	// Set up the toolbar
+	// Set up the toolbar (needed because it's placed in the View's Scene instead of the Window's Scene for convenience)
 	self.view.window.toolbar = self.toolbar;
 	
 	// Set up the search field in the toolbar 
 	if (@available(macOS 11.0, *)) {
-		// no need to set the sizes here, and they lead to ugly warnings
+		// No need to set the max size here, and it would lead to ugly warnings in the log
 	} else {
-		// allow the search field use more of the available space
+		// Let's allow the search field use more of the available space
 		self.searchToolbarItem.maxSize = NSMakeSize (250, self.searchToolbarItem.maxSize.height);
 	}
 	
-	// Adjust any segmented controls in the toolbar for pre/post Big Sur width differences
-	[self fixSegmentedToolbarItemWidths];
+	if (@available(macOS 10.14, *)) {
+		// No need to fix the segment sizes here, and they'd lead to ugly warnings in macOS 11 and later
+	} else {
+		// Adjust any segmented controls in the toolbar for pre/post High Sierra width differences
+		[self fixSegmentedToolbarItemWidths];
+	}
 }
 
 #pragma mark - IBActions
@@ -63,10 +68,14 @@
 
 - (void)fixSegmentedToolbarItemWidths // call this from `viewWillAppear`
 {
+	BOOL didChange = NO;
 	for (NSToolbarItem *item in self.view.window.toolbar.items) {
 		if ([item.view isKindOfClass:NSSegmentedControl.class]) {
 			[self sizeTofitToolbarItem:item];
+			didChange = YES;
 		}
+	}
+	if (didChange) {
 		[self.view.window.toolbar validateVisibleItems];
 	}
 }
@@ -75,13 +84,10 @@
 {
 	NSControl *control = (NSControl*)item.view;
 	[control sizeToFit];
-	if (@available(macOS 11.0, *)) {
-		// no need to set the sizes here, and they lead to ugly warnings
-	} else {
-		NSRect frame = control.frame;
-		item.minSize = NSMakeSize(frame.size.width+2, item.minSize.height);	// the toolbar item appears to always be 2 px wider than its content
-		item.maxSize = item.minSize;
-	}
+	NSRect frame = control.frame;
+	const int padding = 2; // padding is 2 in 10.13 and is 0 in 10.14 and 10.15 (determined empirically)
+	item.minSize = NSMakeSize(frame.size.width+padding, item.minSize.height);
+	item.maxSize = item.minSize;
 }
 
 @end
