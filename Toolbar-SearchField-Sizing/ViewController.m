@@ -37,8 +37,12 @@
 
 #pragma mark - IBActions
 
-- (IBAction)customizeToolbar:(id)sender {
+- (IBAction)customizeToolbar:(id)sender {	// this is useful for checking whether the fixes also work in the customization sheet
 	[self.view.window.toolbar runCustomizationPalette:self];
+}
+
+- (IBAction)fixSegmentedControls:(id)sender {	// this allows you to test the fix on 10.14 and later to see its effect
+	[self fixSegmentedToolbarItemWidths];
 }
 
 #pragma mark - NSSearchField handling

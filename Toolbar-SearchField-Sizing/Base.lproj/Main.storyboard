@@ -707,11 +707,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="515" height="145"/>
+                        <rect key="frame" x="0.0" y="0.0" width="515" height="94"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="58K-Vm-mWa">
-                                <rect key="frame" x="181" y="55" width="153" height="32"/>
+                                <rect key="frame" x="181" y="46" width="153" height="32"/>
                                 <buttonCell key="cell" type="push" title="Customize Toolbar" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NiZ-Pm-AE5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -720,10 +720,23 @@
                                     <action selector="customizeToolbar:" target="XfG-lQ-9wD" id="qZe-6e-BAq"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SMu-tl-cfP">
+                                <rect key="frame" x="165" y="13" width="185" height="32"/>
+                                <buttonCell key="cell" type="push" title="Fix Segmented Controls" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="f8k-bY-RF6">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="fixSegmentedControls:" target="XfG-lQ-9wD" id="BOC-SI-kko"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="58K-Vm-mWa" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="R5h-PH-BRh"/>
-                            <constraint firstItem="58K-Vm-mWa" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="yGi-BW-hkb"/>
+                            <constraint firstItem="58K-Vm-mWa" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="3mu-Kv-7HW"/>
+                            <constraint firstItem="58K-Vm-mWa" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="XB6-Tu-iA6"/>
+                            <constraint firstAttribute="bottom" secondItem="SMu-tl-cfP" secondAttribute="bottom" constant="20" id="lfj-Zr-q3d"/>
+                            <constraint firstItem="SMu-tl-cfP" firstAttribute="top" secondItem="58K-Vm-mWa" secondAttribute="bottom" constant="12" id="oie-kg-yDg"/>
+                            <constraint firstItem="58K-Vm-mWa" firstAttribute="centerX" secondItem="SMu-tl-cfP" secondAttribute="centerX" id="rZg-D0-rUQ"/>
                         </constraints>
                     </view>
                     <connections>
@@ -748,7 +761,7 @@
                         <toolbarItem implicitItemIdentifier="26398DC7-EA9C-4F87-8113-72388272D7DE" explicitItemIdentifier="segment1" label="Segment 1" paletteLabel="Segment 1" sizingBehavior="auto" id="eyE-aG-rRd">
                             <nil key="toolTip"/>
                             <segmentedControl key="view" verticalHuggingPriority="750" id="6zp-Uy-f7r">
-                                <rect key="frame" x="0.0" y="14" width="139" height="23"/>
+                                <rect key="frame" x="0.0" y="14" width="184" height="24"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="oek-T4-Ojl">
                                     <font key="font" metaFont="system"/>
@@ -763,7 +776,7 @@
                         <toolbarItem implicitItemIdentifier="A21360B1-8783-4E92-B023-ED65209D7339" explicitItemIdentifier="segment2" label="Segment 2" paletteLabel="Segment 2" sizingBehavior="auto" id="dnM-Fh-bRZ">
                             <nil key="toolTip"/>
                             <segmentedControl key="view" verticalHuggingPriority="750" id="jMX-qj-LwS">
-                                <rect key="frame" x="0.0" y="14" width="95" height="23"/>
+                                <rect key="frame" x="0.0" y="14" width="140" height="24"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="selectOne" id="WoH-ZH-aWj">
                                     <font key="font" metaFont="system"/>
@@ -802,7 +815,7 @@
                     </defaultToolbarItems>
                 </toolbar>
             </objects>
-            <point key="canvasLocation" x="95.5" y="493.5"/>
+            <point key="canvasLocation" x="95.5" y="516.5"/>
         </scene>
     </scenes>
 </document>
